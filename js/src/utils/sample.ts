@@ -7,12 +7,12 @@ export class Sample {
             apiKey: ""
         }
 
-        console.log(colors.yellow(`${name}: Started`))
+        console.log(colors.yellow(`[+] ${name}: Started`))
         fn(config).then(() => {
-            console.log(colors.green(`${name}: Successful`))
+            console.log(colors.green(`[✓] ${name}: Successful`))
         }).catch(err => {
-            console.log(colors.red(`${name}: Failure`))
-            console.log(colors.red(`${name}: ${err}`))
+            console.log(colors.red(`[!] ${name}: Failure`))
+            console.log(colors.red(`[!] ${name}: ${err}`))
         })
     }
 }
