@@ -1,10 +1,9 @@
-import { Config } from "../../config"
-import { Sample } from "../../sample"
+import { Config } from "../../utils/config"
+import { Sample } from "../../utils/sample"
 
 Sample.run("builder_from_string", async (config: Config) => {
     console.log('start from_string', config)
-    return Promise.reject("an error")
     setTimeout(() => {
         console.log('end from_string')
-    }, 1000)
+    }, 2000)
 })

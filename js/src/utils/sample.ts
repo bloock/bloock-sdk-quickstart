@@ -1,10 +1,11 @@
-import { workerData } from 'node:worker_threads'
 import { Config } from './config'
 import * as colors from 'colors'
 
 export class Sample {
     public static run(name: string, fn: (config: Config) => Promise<any>) {
-        let config = workerData as Config;
+        let config: Config = {
+            apiKey: ""
+        }
 
         console.log(colors.yellow(`${name}: Started`))
         fn(config).then(() => {

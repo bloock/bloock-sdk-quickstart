@@ -2,4 +2,4 @@ update_version:
 
 
 run:
-	npx ts-node src/index.ts
+	find src/samples/**/* -type f -name '*.ts' | rush 'echo {}; npx ts-node {}' 
