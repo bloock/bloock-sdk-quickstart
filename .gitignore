@@ -1,1 +1,7 @@
 js/node_modules
+
+go/vendor
+
+python/**/*.egg-info
+python/build
+python/dist
