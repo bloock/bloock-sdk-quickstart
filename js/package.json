@@ -1,0 +1,25 @@
+{
+  "name": "bloock-sdk-quickstart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "marcbaque",
+  "license": "ISC",
+  "dependencies": {
+    "@bloock/sdk": "^2.0.0-beta.17",
+    "@swc/core": "^1.3.14",
+    "colors": "^1.4.0",
+    "glob": "^8.0.3",
+    "jest-haste-map": "^29.2.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.0.0",
+    "@types/node": "^18.11.9",
+    "tsc-alias": "^1.7.0"
+  }
+}
