@@ -3,21 +3,34 @@ package main
 import (
 	"errors"
 
+	"github.com/bloock/bloock-sdk-go/v2"
 	"github.com/bloock/bloock-sdk-go/v2/builder"
 	"github.com/bloock/bloock-sdk-quickstart/utils"
 	"github.com/fatih/color"
 )
 
 func main() {
-	utils.Sample("builder_from_hex", func(c utils.Config) error {
-        record, err := builder.NewRecordBuilderFromHex("1234567890abcdef").Build()
+	utils.Sample("builder_from_record", func(c utils.Config) error {
+        bloock.ApiKey = c.ApiKey
+
+		record, err := builder.NewRecordBuilderFromString("Hello world").Build()
+        if err != nil {
+            return err
+        }
+
+		hash, err := record.GetHash()
+        if err != nil {
+            return err
+        }
+
+		record, err = builder.NewRecordBuilderFromRecord(record).Build()
         if err != nil {
             return err
         }
 
         color.Green("=> Record was created successfully")
 
-        hash, err := record.GetHash()
+        hash, err = record.GetHash()
         if err != nil {
             return err
         }

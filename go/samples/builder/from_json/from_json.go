@@ -9,8 +9,8 @@ import (
 )
 
 func main() {
-	utils.Sample("builder_from_hex", func(c utils.Config) error {
-        record, err := builder.NewRecordBuilderFromHex("1234567890abcdef").Build()
+	utils.Sample("builder_from_bytes", func(c utils.Config) error {
+        record, err := builder.NewRecordBuilderFromJSON("{\"hello\":\"world\"}").Build()
         if err != nil {
             return err
         }
@@ -22,7 +22,7 @@ func main() {
             return err
         }
         
-        if hash != "ed6c11b0b5b808960df26f5bfc471d04c1995b0ffd2055925ad1be28d6baadfd" {
+        if hash != "586e9b1e1681ba3ebad5ff5e6f673d3e3aa129fcdb76f92083dbc386cdde4312" {
             return errors.New("Unexpected hash received")
         }
 

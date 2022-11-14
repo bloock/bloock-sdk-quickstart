@@ -5,6 +5,7 @@ import "github.com/fatih/color"
 func Sample(name string, fn func(Config) error) {
 	config := Config{
 		ApiKey: "",
+        ApiHost: "",
 	}
 
 	color.Yellow("[+] %s: Started", name)

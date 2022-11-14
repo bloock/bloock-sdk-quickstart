@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"io/ioutil"
 
 	"github.com/bloock/bloock-sdk-go/v2/builder"
 	"github.com/bloock/bloock-sdk-quickstart/utils"
@@ -9,8 +10,13 @@ import (
 )
 
 func main() {
-	utils.Sample("builder_from_hex", func(c utils.Config) error {
-        record, err := builder.NewRecordBuilderFromHex("1234567890abcdef").Build()
+	utils.Sample("builder_from_bytes", func(c utils.Config) error {
+        file, err := ioutil.ReadFile("dummy.pdf")
+        if err != nil {
+            return err
+        }
+
+        record, err := builder.NewRecordBuilderFromFile(file).Build()
         if err != nil {
             return err
         }
@@ -22,11 +28,11 @@ func main() {
             return err
         }
         
-        if hash != "ed6c11b0b5b808960df26f5bfc471d04c1995b0ffd2055925ad1be28d6baadfd" {
+        if hash != "TODO" {
             return errors.New("Unexpected hash received")
         }
 
-        color.Green("=> Hash: %s", hash)
+        color.Green("[✓] %s", hash)
 
 		return nil
 	})
