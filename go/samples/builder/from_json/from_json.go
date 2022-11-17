@@ -10,23 +10,23 @@ import (
 
 func main() {
 	utils.Sample("builder_from_bytes", func(c utils.Config) error {
-        record, err := builder.NewRecordBuilderFromJSON("{\"hello\":\"world\"}").Build()
-        if err != nil {
-            return err
-        }
+		record, err := builder.NewRecordBuilderFromJSON("{\"hello\":\"world\"}").Build()
+		if err != nil {
+			return err
+		}
 
-        color.Green("=> Record was created successfully")
+		color.Green("[✓]  Record was created successfully")
 
-        hash, err := record.GetHash()
-        if err != nil {
-            return err
-        }
-        
-        if hash != "586e9b1e1681ba3ebad5ff5e6f673d3e3aa129fcdb76f92083dbc386cdde4312" {
-            return errors.New("Unexpected hash received")
-        }
+		hash, err := record.GetHash()
+		if err != nil {
+			return err
+		}
 
-        color.Green("=> Hash: %s", hash)
+		if hash != "586e9b1e1681ba3ebad5ff5e6f673d3e3aa129fcdb76f92083dbc386cdde4312" {
+			return errors.New("Unexpected hash received")
+		}
+
+		color.Green("[✓]  Hash: %s", hash)
 
 		return nil
 	})

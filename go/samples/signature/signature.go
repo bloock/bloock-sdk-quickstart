@@ -11,59 +11,59 @@ import (
 
 func main() {
 	utils.Sample("signature", func(c utils.Config) error {
-        bloock.ApiKey = c.ApiKey
-        sdk := client.NewClient()
+		bloock.ApiKey = c.ApiKey
+		sdk := client.NewClient()
 
-        payload := "This will be encrypted"
+		payload := "This will be encrypted"
 
-        color.Yellow("[+] The following payload will be encrypted: '%s'\n", payload)
+		color.Yellow("[+] The following payload will be encrypted: '%s'\n", payload)
 
-        keys, err := sdk.GenerateKeys()
-        if err != nil {
-            return err
-        }
+		keys, err := sdk.GenerateKeys()
+		if err != nil {
+			return err
+		}
 
 		signedRecord, err := builder.NewRecordBuilderFromString(payload).
 			WithSigner(entity.NewEcsdaSigner(keys.PrivateKey)).
 			Build()
 
-        if err != nil {
-            return err
-        }
+		if err != nil {
+			return err
+		}
 
-        color.Green("[✓] Record was signed succesfully")
+		color.Green("[✓] Record was signed succesfully")
 
-        // we can add another signature with a different key 
-        keys, err = sdk.GenerateKeys()
-        if err != nil {
-            return err
-        }
+		// we can add another signature with a different key
+		keys, err = sdk.GenerateKeys()
+		if err != nil {
+			return err
+		}
 
 		signedRecord, err = builder.NewRecordBuilderFromRecord(signedRecord).
 			WithSigner(entity.NewEcsdaSigner(keys.PrivateKey)).
 			Build()
 
-        if err != nil {
-            return err
-        }
+		if err != nil {
+			return err
+		}
 
-        color.Green("[✓] Record was signed succesfully")
+		color.Green("[✓] Record was signed succesfully")
 
-        hash, err := signedRecord.GetHash()
-        if err != nil {
-            return err
-        }
-        color.Green("[✓] Hash: %s", hash)
+		hash, err := signedRecord.GetHash()
+		if err != nil {
+			return err
+		}
+		color.Green("[✓] Hash: %s", hash)
 
-        signatures, err := signedRecord.GetSignatures()
-        if err != nil {
-            return err
-        }
+		signatures, err := signedRecord.GetSignatures()
+		if err != nil {
+			return err
+		}
 
-        for i, signature := range signatures {
-            color.Green("[✓] Signature %d: %+v", i+1, signature.Signature)
-        }
+		for i, signature := range signatures {
+			color.Green("[✓] Signature %d: %+v", i+1, signature.Signature)
+		}
 
-        return nil
-    })
+		return nil
+	})
 }

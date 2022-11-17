@@ -8,6 +8,7 @@ import (
 	"github.com/bloock/bloock-sdk-go/v2/client"
 	"github.com/bloock/bloock-sdk-go/v2/client/entity"
 	"github.com/bloock/bloock-sdk-quickstart/utils"
+	"github.com/fatih/color"
 )
 
 func main() {
@@ -33,10 +34,17 @@ func main() {
 			return err
 		}
 
-		_, err = sdk.WaitAnchor(receipt[0].Anchor, entity.NewAnchorParams())
+		params := entity.NewAnchorParams()
+		// we can leve the params as default or we can specify a timeout
+		params.Timeout = 120000 // default is 120000
+
+		// Once we sent a record, we can wait for it's anochor
+		color.Yellow("[+] Waiting for anchor...")
+		anchor, err := sdk.WaitAnchor(receipt[0].Anchor, params)
 		if err != nil {
 			return err
 		}
+		color.Green("[✓] Anchor %d done!", anchor)
 
 		network := entity.NewNetworkParams()
 		// we can specify the network we verify against or leave the default
@@ -70,27 +78,32 @@ func main() {
 			return err
 		}
 
-		_, err = sdk.WaitAnchor(receipt[0].Anchor, entity.NewAnchorParams())
+		// Once we sent a record, we can wait for it's anochor
+		color.Yellow("[+] Waiting for anchor...")
+		anchor, err := sdk.WaitAnchor(receipt[0].Anchor, entity.NewAnchorParams())
 		if err != nil {
 			return err
 		}
+		color.Green("[✓] Anchor %d done!", anchor)
 
 		network := entity.NewNetworkParams()
 		// we can specify the network we verify against or leave the default
 		network.Network = entity.ListOfNetworks().BloockChain
 
+		// first we get the proof
 		proof, err := sdk.GetProof(records)
 		if err != nil {
 			return err
 		}
 
+		// then verify it
 		root, err := sdk.VerifyProof(proof)
 		if err != nil {
 			return err
 		}
 
-		// we then verify the root and we will recive a timestamp
-		// greater than 0 if the verification was successful
+		// And finally validate the root. We will recive a timestamp
+		// greater than 0 if the validation was successful
 		timestamp, err := sdk.ValidateRoot(root, network)
 		if err != nil {
 			return err

@@ -10,23 +10,23 @@ import (
 
 func main() {
 	utils.Sample("builder_from_hex", func(c utils.Config) error {
-        record, err := builder.NewRecordBuilderFromHex("1234567890abcdef").Build()
-        if err != nil {
-            return err
-        }
+		record, err := builder.NewRecordBuilderFromHex("1234567890abcdef").Build()
+		if err != nil {
+			return err
+		}
 
-        color.Green("=> Record was created successfully")
+		color.Green("[✓]  Record was created successfully")
 
-        hash, err := record.GetHash()
-        if err != nil {
-            return err
-        }
-        
-        if hash != "ed6c11b0b5b808960df26f5bfc471d04c1995b0ffd2055925ad1be28d6baadfd" {
-            return errors.New("Unexpected hash received")
-        }
+		hash, err := record.GetHash()
+		if err != nil {
+			return err
+		}
 
-        color.Green("=> Hash: %s", hash)
+		if hash != "ed8ab4fde4c4e2749641d9d89de3d920f9845e086abd71e6921319f41f0e784f" {
+			return errors.New("Unexpected hash received")
+		}
+
+		color.Green("[✓]  Hash: %s", hash)
 
 		return nil
 	})

@@ -11,35 +11,35 @@ import (
 
 func main() {
 	utils.Sample("builder_from_record", func(c utils.Config) error {
-        bloock.ApiKey = c.ApiKey
+		bloock.ApiKey = c.ApiKey
 
 		record, err := builder.NewRecordBuilderFromString("Hello world").Build()
-        if err != nil {
-            return err
-        }
+		if err != nil {
+			return err
+		}
 
 		hash, err := record.GetHash()
-        if err != nil {
-            return err
-        }
+		if err != nil {
+			return err
+		}
 
 		record, err = builder.NewRecordBuilderFromRecord(record).Build()
-        if err != nil {
-            return err
-        }
+		if err != nil {
+			return err
+		}
 
-        color.Green("=> Record was created successfully")
+		color.Green("[✓]  Record was created successfully")
 
-        hash, err = record.GetHash()
-        if err != nil {
-            return err
-        }
-        
-        if hash != "ed6c11b0b5b808960df26f5bfc471d04c1995b0ffd2055925ad1be28d6baadfd" {
-            return errors.New("Unexpected hash received")
-        }
+		hash, err = record.GetHash()
+		if err != nil {
+			return err
+		}
 
-        color.Green("=> Hash: %s", hash)
+		if hash != "ed6c11b0b5b808960df26f5bfc471d04c1995b0ffd2055925ad1be28d6baadfd" {
+			return errors.New("Unexpected hash received")
+		}
+
+		color.Green("[✓]  Hash: %s", hash)
 
 		return nil
 	})
