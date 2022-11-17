@@ -4,14 +4,14 @@ from colorama import Fore, Style
 
 from bloock.client.builder import RecordBuilder
 
-def from_hex(_: Config):
-    record = RecordBuilder.from_hex("1234567890abcdef").build()
+def from_bytes(_: Config):
+    record = RecordBuilder.from_bytes(bytes([1, 2, 3, 4, 5])).build()
     print(Fore.GREEN + f'[✓] Record was created successfully' + Style.RESET_ALL)
 
     hash = record.get_hash()
-    if hash != "ed8ab4fde4c4e2749641d9d89de3d920f9845e086abd71e6921319f41f0e784f":
+    if hash != "7d87c5ea75f7378bb701e404c50639161af3eff66293e9f375b5f17eb50476f4":
         raise Exception("Unexpected hash received")
 
     print(Fore.GREEN + f'[✓] Hash: {hash}' + Style.RESET_ALL)
 
-Sample("builder_from_hex", from_hex)
+Sample("builder_from_bytes", from_bytes)
