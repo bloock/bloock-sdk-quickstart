@@ -39,7 +39,7 @@ func main() {
 		}
 
 		network := entity.NewNetworkParams()
-		// we can specify the network we can verify against or leave the default
+		// we can specify the network we verify against or leave the default
 		network.Network = entity.ListOfNetworks().BloockChain
 		// we then verify the records and we will recive a timestamp
 		// greater than 0 if the verification was successful
@@ -76,7 +76,7 @@ func main() {
 		}
 
 		network := entity.NewNetworkParams()
-		// we can specify the network we can verify against or leave the default
+		// we can specify the network we verify against or leave the default
 		network.Network = entity.ListOfNetworks().BloockChain
 
 		proof, err := sdk.GetProof(records)
