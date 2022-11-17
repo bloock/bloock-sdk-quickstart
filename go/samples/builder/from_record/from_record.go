@@ -18,11 +18,6 @@ func main() {
 			return err
 		}
 
-		hash, err := record.GetHash()
-		if err != nil {
-			return err
-		}
-
 		record, err = builder.NewRecordBuilderFromRecord(record).Build()
 		if err != nil {
 			return err
@@ -30,7 +25,7 @@ func main() {
 
 		color.Green("[✓]  Record was created successfully")
 
-		hash, err = record.GetHash()
+		hash, err := record.GetHash()
 		if err != nil {
 			return err
 		}

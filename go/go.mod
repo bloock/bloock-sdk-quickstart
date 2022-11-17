@@ -14,7 +14,7 @@ require (
 )
 
 require (
-	github.com/bloock/bloock-sdk-go/v2 v2.0.0-beta.20
+	github.com/bloock/bloock-sdk-go/v2 v2.0.0-beta.22
 	github.com/mattn/go-colorable v0.1.9 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
 	golang.org/x/sys v0.0.0-20220731174439-a90be440212d // indirect

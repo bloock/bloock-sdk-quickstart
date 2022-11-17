@@ -8,8 +8,7 @@ import (
 
 func Sample(name string, fn func(Config) error) {
 	config := Config{
-		ApiKey:  os.Getenv("API_KEY"),
-		ApiHost: os.Getenv("API_HOST"),
+		ApiKey: os.Getenv("API_KEY"),
 	}
 
 	color.Yellow("[+] %s: Started", name)

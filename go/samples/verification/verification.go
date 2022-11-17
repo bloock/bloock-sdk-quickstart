@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/bloock/bloock-sdk-go/v2"
 	"github.com/bloock/bloock-sdk-go/v2/builder"
 	"github.com/bloock/bloock-sdk-go/v2/client"
@@ -52,7 +50,7 @@ func main() {
 		// we then verify the records and we will recive a timestamp
 		// greater than 0 if the verification was successful
 		timestamp, _ := sdk.VerifyRecords(records, network)
-		fmt.Println(timestamp)
+		color.Green("[✓] Timestamp: %d", timestamp)
 		return nil
 	})
 
@@ -86,10 +84,6 @@ func main() {
 		}
 		color.Green("[✓] Anchor %d done!", anchor)
 
-		network := entity.NewNetworkParams()
-		// we can specify the network we verify against or leave the default
-		network.Network = entity.ListOfNetworks().BloockChain
-
 		// first we get the proof
 		proof, err := sdk.GetProof(records)
 		if err != nil {
@@ -102,14 +96,17 @@ func main() {
 			return err
 		}
 
-		// And finally validate the root. We will recive a timestamp
-		// greater than 0 if the validation was successful
+		network := entity.NewNetworkParams()
+		// we can specify the network we verify against or leave the default (EthereumMainnet)
+		network.Network = entity.ListOfNetworks().BloockChain
+		// And finally validate the root
 		timestamp, err := sdk.ValidateRoot(root, network)
 		if err != nil {
 			return err
 		}
 
-		fmt.Println(timestamp)
+		// We will recive a timestamp greater than 0 if the validation was successful
+		color.Green("[✓] Timestamp: %d", timestamp)
 		return nil
 	})
 }

@@ -3,17 +3,17 @@ import { Config } from "../../utils/config"
 import { Sample } from "../../utils/sample"
 import * as colors from 'colors'
 
-Sample.run("builder_from_string", async (config: Config) => {
+Sample.run("builder_from_bytes", async (config: Config) => {
     let record = await RecordBuilder
-        .fromString("Hello world")
+        .fromBytes(Uint8Array.from([1, 2, 3, 4, 5]))
         .build();
     
     console.log(colors.green(`[✓] Record was created successfully`))
 
     let hash = await record.getHash()
-    if (hash != "ed6c11b0b5b808960df26f5bfc471d04c1995b0ffd2055925ad1be28d6baadfd") {
-        throw new Error("Unexpected hash received")
+    if (hash != "7d87c5ea75f7378bb701e404c50639161af3eff66293e9f375b5f17eb50476f4") {
+        throw new Error("Unexpected hash received");
     }
 
-    console.log(colors.green(`[✓] Hash: ${hash}`))
+    console.log(colors.green(`[✓] Hash: ${hash}`));
 })

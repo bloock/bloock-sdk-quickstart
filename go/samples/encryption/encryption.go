@@ -12,7 +12,7 @@ import (
 func main() {
 	utils.Sample("simple encryption/decryption", func(c utils.Config) error {
 		payload := "This will be encrypted"
-		password := "a STRONG password here"
+		password := "a STRONG password"
 
 		color.Yellow("[+] The following payload will be encrypted: '%s'\n", payload)
 
@@ -53,7 +53,7 @@ func main() {
 		color.Yellow("[+] Trying to decrypt with invalid password")
 
 		_, err = builder.NewRecordBuilderFromRecord(encryptedRecord).
-			WithDecrypter(entity.NewAesDecrypter("an invalid password here")).
+			WithDecrypter(entity.NewAesDecrypter("an invalid password")).
 			Build()
 
 		if err == nil {

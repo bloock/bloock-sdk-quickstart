@@ -4,7 +4,7 @@ import * as colors from 'colors'
 export class Sample {
     public static run(name: string, fn: (config: Config) => Promise<any>) {
         let config: Config = {
-            apiKey: ""
+            apiKey: process.env["API_KEY"],
         }
 
         console.log(colors.yellow(`[+] ${name}: Started`))
