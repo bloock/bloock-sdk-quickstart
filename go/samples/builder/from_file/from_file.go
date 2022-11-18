@@ -11,7 +11,7 @@ import (
 
 func main() {
 	utils.Sample("builder_from_file", func(c utils.Config) error {
-		file, err := ioutil.ReadFile("resources/dummy.pdf")
+		file, err := ioutil.ReadFile("../resources/dummy.pdf")
 		if err != nil {
 			return err
 		}
@@ -35,7 +35,7 @@ func main() {
         logger.Success("Hash: " + hash)
 
 		// we can get the file back if needed
-		err = ioutil.WriteFile("resources/output.pdf", record.Retrieve(), 0644)
+		err = ioutil.WriteFile("../resources/output.pdf", record.Retrieve(), 0644)
 		if err != nil {
 			return err
 		}
