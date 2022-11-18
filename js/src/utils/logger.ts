@@ -10,7 +10,7 @@ export class Logger {
     }
 
     public static info(message: string) {
-        console.log(colors.yellow(`[+] ${message}`));
+        console.log(colors.cyan(`[i] ${message}`));
     }
 
     public static error(message: string) {

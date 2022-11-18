@@ -7,7 +7,7 @@ Sample.run("encryption", async (_: Config) => {
     let payload = "This wil be encrypted";
     let password = "a STRONG password";
 
-    Logger.info(`The following payload will be encrypted: ${payload}`);
+    Logger.warn(`The following payload will be encrypted: ${payload}`);
 
     // To encrypt we add an encrypter to the builder
     let encryptedRecord = await RecordBuilder
@@ -16,7 +16,9 @@ Sample.run("encryption", async (_: Config) => {
         .build();
 
     Logger.success(`Encryption successfully`);
-    Logger.success(`Encrypted payload: ${encryptedRecord.retrieve()}`);
+
+    let encryptedPayload = encryptedRecord.retrieve();
+    Logger.success(`Encrypted payload: ${new TextDecoder().decode(encryptedPayload)}`);
 
     Logger.info("Trying to decrypt with the valid password");
 
@@ -28,13 +30,16 @@ Sample.run("encryption", async (_: Config) => {
 
     Logger.success(`Decryption successfully`);
 
-    let hash = await decryptedRecord.getHash()
-    if (hash != "7d87c5ea75f7378bb701e404c50639161af3eff66293e9f375b5f17eb50476f4") {
+    let hash = await decryptedRecord.getHash();
+
+    Logger.success(`Hash: ${hash}`);
+
+    if (hash != "b6e6816e3c6180fcbda27048f033cf2b6f2a627864240c4c85558bcbece2a2e4") {
         throw new Error("Unexpected hash received");
     }
 
-    Logger.success(`Hash: ${hash}`);
-    Logger.success(`Decrypted payload: ${decryptedRecord.retrieve()}`);
+    let decryptedPayload = decryptedRecord.retrieve();
+    Logger.success(`Decrypted payload: ${new TextDecoder().decode(decryptedPayload)}`);
 
     Logger.info("Trying to decrypt with invalid password");
 

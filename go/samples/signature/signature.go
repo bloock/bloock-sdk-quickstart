@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/bloock/bloock-sdk-go/v2"
@@ -52,6 +53,11 @@ func main() {
 		if err != nil {
 			return err
 		}
+
+        if hash != "b6e6816e3c6180fcbda27048f033cf2b6f2a627864240c4c85558bcbece2a2e4" {
+			return errors.New("Unexpected hash received")
+        }
+
 		logger.Success("Hash: " + hash)
 
 		signatures, err := signedRecord.GetSignatures()

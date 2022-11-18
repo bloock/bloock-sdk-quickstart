@@ -3,9 +3,9 @@ import { Config } from "../../utils/config"
 import { Sample } from "../../utils/sample"
 import { Logger } from "../../utils/logger";
 
-Sample.run("Verification", async (_: Config) => {
+Sample.run("Verification", async (config: Config) => {
     // we set the API key and create a client
-    Bloock.setApiKey(process.env["API_KEY"]);
+    Bloock.setApiKey(config.apiKey);
     let client = new BloockClient();
 
     let record = await RecordBuilder
@@ -28,9 +28,9 @@ Sample.run("Verification", async (_: Config) => {
     Logger.success(`Timestamp: ${timestamp}`);
 })
 
-Sample.run("Verification long", async (_: Config) => {
+Sample.run("Verification long", async (config: Config) => {
     // we set the API key and create a client
-    Bloock.setApiKey(process.env["API_KEY"]);
+    Bloock.setApiKey(config.apiKey);
     let client = new BloockClient();
 
     let record = await RecordBuilder

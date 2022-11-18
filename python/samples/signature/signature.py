@@ -34,10 +34,12 @@ def signature(c: Config):
     hash = signed_record.get_hash()
 
     Logger.success(f"Hash: {hash}")
+    if hash != "b6e6816e3c6180fcbda27048f033cf2b6f2a627864240c4c85558bcbece2a2e4":
+        raise Exception("Unexpected hash received")
 
     signatures = signed_record.get_signatures()
 
     for i, signature in enumerate(signatures):
-        Logger.success(f"Signature {i+1}: {signature.signature}")
+        Logger.success(f"Signature {i + 1}: {signature.signature}")
 
 Sample("signature", signature)

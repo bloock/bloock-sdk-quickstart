@@ -25,5 +25,5 @@ Sample.run("Send Data", async (config: Config) => {
     let sendReceipts = await client.sendRecords(records)
 
     // we get a receipt with informationa about the transaction
-    Logger.success(`Record receipts: ${sendReceipts}`);
+    Logger.success(`Record receipts: ${JSON.stringify(sendReceipts)}`);
 })

@@ -11,7 +11,7 @@ class Logger:
 
     @staticmethod
     def info(message: str):
-        print(Fore.YELLOW + '[+] ' + message + Style.RESET_ALL)
+        print(Fore.CYAN + '[i] ' + message + Style.RESET_ALL)
 
     @staticmethod
     def err(message: str):

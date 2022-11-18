@@ -11,7 +11,7 @@ func Warn(message string) {
 }
 
 func Info(message string) {
-	color.Yellow("[+] %s", message)
+	color.Cyan("[i] %s", message)
 }
 
 func Error(message string) {
