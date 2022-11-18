@@ -1,9 +1,9 @@
 import { HostedLoader, HostedPublisher, RecordBuilder } from "@bloock/sdk"
 import { Config } from "../../utils/config"
+import { Logger } from "../../utils/logger";
 import { Sample } from "../../utils/sample"
-import * as colors from 'colors'
 
-Sample.run("builder_from_loader", async (config: Config) => {
+Sample.run("builder_from_loader", async (_: Config) => {
     let record = await RecordBuilder
         .fromString("Hello world")
         .build();
@@ -23,8 +23,7 @@ Sample.run("builder_from_loader", async (config: Config) => {
         .fromLoader(new HostedLoader(result))
         .build();
 
-    console.log(colors.green(`[✓] Record was created successfully`));
+    Logger.success(`Record was created successfully`)
 
-
-    console.log(colors.green(`[✓] Hash: ${hash}`));
+    Logger.success(`Hash: ${hash}`);
 })

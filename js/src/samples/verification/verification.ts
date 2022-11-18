@@ -1,7 +1,7 @@
 import { Bloock, BloockClient, Network, RecordBuilder } from "@bloock/sdk"
 import { Config } from "../../utils/config"
 import { Sample } from "../../utils/sample"
-import * as colors from 'colors'
+import { Logger } from "../../utils/logger";
 
 Sample.run("Verification", async (_: Config) => {
     // we set the API key and create a client
@@ -18,14 +18,14 @@ Sample.run("Verification", async (_: Config) => {
     let receipts = await client.sendRecords(records);
 
     // Once we sent a record, we can wait for it's anochor
-    console.log(colors.yellow(`[+] Waiting for anchor...`));
+    Logger.info(`Waiting for anchor...`);
     // we can optionally specify a timeout (if not set, default is 120000) 
     let anchor = await client.waitAnchor(receipts[0].anchor, 120000);
-    console.log(colors.green(`[✓] Anchor ${anchor} done!`));
+    Logger.success(`Anchor ${anchor} done!`);
 
     // we can optionally specify a network (if not set, default is Ethereum Mainnet)
     let timestamp = await client.verifyRecords(records, Network.ETHEREUM_MAINNET);
-    console.log(colors.green(`[✓] Timestamp: ${timestamp}`));
+    Logger.success(`Timestamp: ${timestamp}`);
 })
 
 Sample.run("Verification long", async (_: Config) => {
@@ -43,10 +43,10 @@ Sample.run("Verification long", async (_: Config) => {
     let receipts = await client.sendRecords(records);
 
     // Once we sent a record, we can wait for it's anochor
-    console.log(colors.yellow(`[+] Waiting for anchor...`));
+    Logger.info(`Waiting for anchor...`);
     // we can optionally specify a timeout (if not set, default is 120000) 
     let anchor = await client.waitAnchor(receipts[0].anchor, 120000);
-    console.log(colors.green(`[✓] Anchor ${anchor} done!`));
+    Logger.success(`Anchor ${anchor} done!`);
 
     // first we get the proof
     let proof = await client.getProof(records);
@@ -59,5 +59,5 @@ Sample.run("Verification long", async (_: Config) => {
     let timestamp = await client.validateRoot(root, Network.ETHEREUM_MAINNET)
 
     // We will recive a timestamp greater than 0 if the validation was successful
-    console.log(colors.green(`[✓] Timestamp: ${timestamp}`));
+    Logger.success(`Timestamp: ${timestamp}`);
 })

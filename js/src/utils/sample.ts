@@ -1,5 +1,5 @@
 import { Config } from './config'
-import * as colors from 'colors'
+import { Logger } from './logger'
 
 export class Sample {
     public static run(name: string, fn: (config: Config) => Promise<any>) {
@@ -7,12 +7,12 @@ export class Sample {
             apiKey: process.env["API_KEY"],
         }
 
-        console.log(colors.yellow(`[+] ${name}: Started`))
+        Logger.info(`${name}: Started`)
         fn(config).then(() => {
-            console.log(colors.green(`[✓] ${name}: Successful`))
+            Logger.success(`${name}: Successful`)
         }).catch(err => {
-            console.log(colors.red(`[!] ${name}: Failure`))
-            console.log(colors.red(`[!] ${name}: ${err}`))
+            Logger.error(`${name}: Failure`)
+            Logger.error(`${name}: ${err}`)
         })
     }
 }

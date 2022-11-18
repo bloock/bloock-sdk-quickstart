@@ -1,7 +1,7 @@
 import { Bloock, BloockClient, RecordBuilder } from "@bloock/sdk"
 import { Config } from "../../utils/config"
 import { Sample } from "../../utils/sample"
-import * as colors from 'colors'
+import { Logger } from "../../utils/logger";
 
 Sample.run("Send Data", async (config: Config) => {
     // we set the API key and create a client
@@ -25,5 +25,5 @@ Sample.run("Send Data", async (config: Config) => {
     let sendReceipts = await client.sendRecords(records)
 
     // we get a receipt with informationa about the transaction
-    console.log(colors.green(`[✓] Record receipts: ${sendReceipts}`));
+    Logger.success(`Record receipts: ${sendReceipts}`);
 })
