@@ -3,7 +3,7 @@ import { Config } from "../../utils/config"
 import { Sample } from "../../utils/sample"
 import * as colors from 'colors'
 
-Sample.run("builder_from_bytes", async (config: Config) => {
+Sample.run("encryption", async (config: Config) => {
     let payload = "This wil be encrypted";
     let password = "a STRONG password";
 

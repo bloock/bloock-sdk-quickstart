@@ -33,7 +33,7 @@ func main() {
 		}
 
 		params := entity.NewAnchorParams()
-		// we can leve the params as default or we can specify a timeout
+		// we can leave the params as default or we can specify a timeout
 		params.Timeout = 120000 // default is 120000
 
 		// Once we sent a record, we can wait for it's anochor
@@ -42,7 +42,7 @@ func main() {
 		if err != nil {
 			return err
 		}
-		color.Green("[✓] Anchor %d done!", anchor)
+		color.Green("[✓] Anchor %+v done!", anchor)
 
 		network := entity.NewNetworkParams()
 		// we can specify the network we verify against or leave the default

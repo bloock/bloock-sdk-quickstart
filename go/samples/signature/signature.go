@@ -14,16 +14,12 @@ func main() {
 		bloock.ApiKey = c.ApiKey
 		sdk := client.NewClient()
 
-		payload := "This will be encrypted"
-
-		color.Yellow("[+] The following payload will be encrypted: '%s'\n", payload)
-
 		keys, err := sdk.GenerateKeys()
 		if err != nil {
 			return err
 		}
 
-		signedRecord, err := builder.NewRecordBuilderFromString(payload).
+		signedRecord, err := builder.NewRecordBuilderFromString("Hello world").
 			WithSigner(entity.NewEcsdaSigner(keys.PrivateKey)).
 			Build()
 
@@ -31,7 +27,7 @@ func main() {
 			return err
 		}
 
-		color.Green("[✓] Record was signed succesfully")
+		color.Green("[✓] Record was signed successfully")
 
 		// we can add another signature with a different key
 		keys, err = sdk.GenerateKeys()
@@ -39,6 +35,7 @@ func main() {
 			return err
 		}
 
+        color.Yellow("[+] Adding another signature")
 		signedRecord, err = builder.NewRecordBuilderFromRecord(signedRecord).
 			WithSigner(entity.NewEcsdaSigner(keys.PrivateKey)).
 			Build()
@@ -47,7 +44,7 @@ func main() {
 			return err
 		}
 
-		color.Green("[✓] Record was signed succesfully")
+		color.Green("[✓] Record was signed successfully")
 
 		hash, err := signedRecord.GetHash()
 		if err != nil {

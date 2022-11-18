@@ -1,8 +1,8 @@
 from bloock.client.entity.loader import HostedLoader
 from bloock.client.entity.publisher import HostedPublisher
+from utils.logger import Logger
 from utils.sample import Sample
 from utils.config import Config
-from colorama import Fore, Style
 
 from bloock.client.builder import RecordBuilder
 
@@ -18,9 +18,8 @@ def from_loader(_: Config):
         raise Exception("Publish's result should be equal to the record's hash")
 
     record = RecordBuilder.from_loader(HostedLoader(hash=result)).build()
-    print(Fore.GREEN + f'[✓] Record was created successfully' + Style.RESET_ALL)
+    Logger.success('Record was created successfully')
 
-
-    print(Fore.GREEN + f'[✓] Hash: {hash}' + Style.RESET_ALL)
+    Logger.success(f'Hash: {hash}')
 
 Sample("builder_from_loader", from_loader)

@@ -1,6 +1,6 @@
+from utils.logger import Logger
 from utils.sample import Sample
 from utils.config import Config
-from colorama import Fore, Style
 
 from bloock.client.builder import RecordBuilder
 
@@ -13,13 +13,13 @@ def from_file(_: Config):
     # and build a record from it
     record = RecordBuilder.from_file(data).build()
     
-    print(Fore.GREEN + f'[✓] Record was created successfully' + Style.RESET_ALL)
+    Logger.success('Record was created successfully')
 
     hash = record.get_hash()
     if hash != "43fa336d95e1634fee2d3031adc44ed9464472b94511af1facb87a1fee0b7e0e":
         raise Exception("Unexpected hash received")
 
-    print(Fore.GREEN + f'[✓] Hash: {hash}' + Style.RESET_ALL)
+    Logger.success(f'Hash: {hash}')
 
     # we can get the file back if needed
     with open("output.pdf", "wb") as file:

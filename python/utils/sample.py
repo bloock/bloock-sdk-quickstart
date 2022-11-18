@@ -1,8 +1,9 @@
+import os
 from utils.config import Config
 from colorama import Fore, Style
 
 def Sample(name, fn):
-    config = Config("")
+    config = Config(api_key=os.getenv("API_KEY"))
 
     print(Fore.YELLOW + f'[+] {name}: Started' + Style.RESET_ALL)
     try:

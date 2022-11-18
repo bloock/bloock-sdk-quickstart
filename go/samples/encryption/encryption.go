@@ -16,7 +16,7 @@ func main() {
 
 		color.Yellow("[+] The following payload will be encrypted: '%s'\n", payload)
 
-		// To encrypt we add a encrypter to the builder
+		// To encrypt we add an encrypter to the builder
 		encryptedRecord, err := builder.NewRecordBuilderFromString(payload).
 			WithEncrypter(entity.NewAesEncrypter(password)).
 			Build()
@@ -25,7 +25,7 @@ func main() {
 			return err
 		}
 
-		color.Green("[✓] Encryption succesful")
+		color.Green("[✓] Encryption successful")
 
 		color.Green("[✓] Encrypted payload: %s", string(encryptedRecord.Retrieve()))
 
@@ -40,7 +40,7 @@ func main() {
 			return err
 		}
 
-		color.Green("[✓] Decryption succesful")
+		color.Green("[✓] Decryption successful")
 
 		hash, err := decryptedRecord.GetHash()
 		if err != nil {

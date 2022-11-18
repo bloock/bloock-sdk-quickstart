@@ -3,7 +3,7 @@ import { Config } from "../../utils/config"
 import { Sample } from "../../utils/sample"
 import * as colors from 'colors'
 
-Sample.run("Verification", async (config: Config) => {
+Sample.run("Verification", async (_: Config) => {
     // we set the API key and create a client
     Bloock.setApiKey(process.env["API_KEY"]);
     let client = new BloockClient();
@@ -25,13 +25,10 @@ Sample.run("Verification", async (config: Config) => {
 
     // we can optionally specify a network (if not set, default is Ethereum Mainnet)
     let timestamp = await client.verifyRecords(records, Network.ETHEREUM_MAINNET);
-    console.log(timestamp);
-
-    // we get a receipt with informationa about the transaction
-    console.log(colors.green(`[✓] Record receipts: ${sendReceipts}`));
+    console.log(colors.green(`[✓] Timestamp: ${timestamp}`));
 })
 
-Sample.run("Verification long", async (config: Config) => {
+Sample.run("Verification long", async (_: Config) => {
     // we set the API key and create a client
     Bloock.setApiKey(process.env["API_KEY"]);
     let client = new BloockClient();
