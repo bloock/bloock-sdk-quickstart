@@ -19,7 +19,7 @@ def verification(c: Config):
     Logger.info("Waiting for anchor...")
     # we can optionally specify a timeout (if not set, default is 120000) 
     anchor = client.wait_anchor(receipts[0].anchor, timeout=120000)
-    Logger.success(f'Anchor {anchor} done!')
+    Logger.success(f'Anchor {anchor.__dict__} done!')
 
     # we can optionally specify a network (if not set, default is Ethereum Mainnet)
     timestamp = client.verify_records(records, Network.ETHEREUM_MAINNET)

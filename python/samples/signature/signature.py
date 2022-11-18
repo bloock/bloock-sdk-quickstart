@@ -34,7 +34,7 @@ def signature(c: Config):
     hash = signed_record.get_hash()
 
     Logger.success(f"Hash: {hash}")
-    if hash != "b6e6816e3c6180fcbda27048f033cf2b6f2a627864240c4c85558bcbece2a2e4":
+    if hash != "ed6c11b0b5b808960df26f5bfc471d04c1995b0ffd2055925ad1be28d6baadfd":
         raise Exception("Unexpected hash received")
 
     signatures = signed_record.get_signatures()
