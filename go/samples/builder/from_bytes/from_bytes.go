@@ -5,7 +5,7 @@ import (
 
 	"github.com/bloock/bloock-sdk-go/v2/builder"
 	"github.com/bloock/bloock-sdk-quickstart/utils"
-	"github.com/fatih/color"
+	"github.com/bloock/bloock-sdk-quickstart/utils/logger"
 )
 
 func main() {
@@ -15,7 +15,7 @@ func main() {
 			return err
 		}
 
-		color.Green("[✓]  Record was created successfully")
+        logger.Success("Record was created successfully")
 
 		hash, err := record.GetHash()
 		if err != nil {
@@ -26,7 +26,7 @@ func main() {
 			return errors.New("Unexpected hash received")
 		}
 
-		color.Green("[✓]  Hash: %s", hash)
+        logger.Success("Hash: " + hash)
 
 		return nil
 	})

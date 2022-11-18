@@ -1,11 +1,13 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/bloock/bloock-sdk-go/v2"
 	"github.com/bloock/bloock-sdk-go/v2/builder"
 	"github.com/bloock/bloock-sdk-go/v2/client"
 	"github.com/bloock/bloock-sdk-quickstart/utils"
-	"github.com/fatih/color"
+	"github.com/bloock/bloock-sdk-quickstart/utils/logger"
 )
 
 func main() {
@@ -39,7 +41,7 @@ func main() {
 			return err
 		}
 		// we get a receipt with informationa about the transaction
-		color.Green("[✓]  Record receipts: %+v", receipt)
+		logger.Success(fmt.Sprintf("Record receipts: %+v", receipt))
 
 		return nil
 	})

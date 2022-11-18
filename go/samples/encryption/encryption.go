@@ -6,7 +6,7 @@ import (
 	"github.com/bloock/bloock-sdk-go/v2/builder"
 	"github.com/bloock/bloock-sdk-go/v2/client/entity"
 	"github.com/bloock/bloock-sdk-quickstart/utils"
-	"github.com/fatih/color"
+	"github.com/bloock/bloock-sdk-quickstart/utils/logger"
 )
 
 func main() {
@@ -14,7 +14,7 @@ func main() {
 		payload := "This will be encrypted"
 		password := "a STRONG password"
 
-		color.Yellow("[+] The following payload will be encrypted: '%s'\n", payload)
+		logger.Info("The following payload will be encrypted: " + payload)
 
 		// To encrypt we add an encrypter to the builder
 		encryptedRecord, err := builder.NewRecordBuilderFromString(payload).
@@ -25,11 +25,11 @@ func main() {
 			return err
 		}
 
-		color.Green("[✓] Encryption successful")
+		logger.Success("Encryption successful")
 
-		color.Green("[✓] Encrypted payload: %s", string(encryptedRecord.Retrieve()))
+		logger.Success("Encrypted payload: " + string(encryptedRecord.Retrieve()))
 
-		color.Yellow("[+] Trying to decrypt with the valid password")
+		logger.Info("Trying to decrypt with the valid password")
 
 		// To decrypt we build a record from the encrypted record and add a decrypter
 		decryptedRecord, err := builder.NewRecordBuilderFromRecord(encryptedRecord).
@@ -40,17 +40,17 @@ func main() {
 			return err
 		}
 
-		color.Green("[✓] Decryption successful")
+		logger.Success("Decryption successful")
 
 		hash, err := decryptedRecord.GetHash()
 		if err != nil {
 			return err
 		}
-		color.Green("[✓] Hash: %s", hash)
+		logger.Success("Hash: " + hash)
 
-		color.Green("[✓] Decrypted payload: '%s'", string(decryptedRecord.Retrieve()))
+		logger.Success("Decrypted payload: " + string(decryptedRecord.Retrieve()))
 
-		color.Yellow("[+] Trying to decrypt with invalid password")
+		logger.Info("Trying to decrypt with invalid password")
 
 		_, err = builder.NewRecordBuilderFromRecord(encryptedRecord).
 			WithDecrypter(entity.NewAesDecrypter("an invalid password")).
@@ -60,7 +60,7 @@ func main() {
 			return errors.New("The password was invalid so an error should've been returned!")
 		}
 
-		color.Green("[✓] The password was invalid so the record could not be decrypted")
+		logger.Success("The password was invalid so the record could not be decrypted")
 
 		return nil
 	})

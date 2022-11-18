@@ -3,7 +3,7 @@ package utils
 import (
 	"os"
 
-	"github.com/fatih/color"
+	"github.com/bloock/bloock-sdk-quickstart/utils/logger"
 )
 
 func Sample(name string, fn func(Config) error) {
@@ -11,12 +11,12 @@ func Sample(name string, fn func(Config) error) {
 		ApiKey: os.Getenv("API_KEY"),
 	}
 
-	color.Yellow("[+] %s: Started", name)
+	logger.Info(name + ": Started")
 	err := fn(config)
 	if err != nil {
-		color.Red("[!] %s: Failure", name)
-		color.Red("[!] %s: %s", name, err.Error())
+		logger.Error(name + ": Failure")
+		logger.Error(name + ": " + err.Error())
 	} else {
-		color.Green("[✓] %s: Successful", name)
+		logger.Success(name + ": Successful")
 	}
 }

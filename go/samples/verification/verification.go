@@ -1,12 +1,14 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/bloock/bloock-sdk-go/v2"
 	"github.com/bloock/bloock-sdk-go/v2/builder"
 	"github.com/bloock/bloock-sdk-go/v2/client"
 	"github.com/bloock/bloock-sdk-go/v2/client/entity"
 	"github.com/bloock/bloock-sdk-quickstart/utils"
-	"github.com/fatih/color"
+	"github.com/bloock/bloock-sdk-quickstart/utils/logger"
 )
 
 func main() {
@@ -37,12 +39,12 @@ func main() {
 		params.Timeout = 120000 // default is 120000
 
 		// Once we sent a record, we can wait for it's anochor
-		color.Yellow("[+] Waiting for anchor...")
+		logger.Info("Waiting for anchor...")
 		anchor, err := sdk.WaitAnchor(receipt[0].Anchor, params)
 		if err != nil {
 			return err
 		}
-		color.Green("[✓] Anchor %+v done!", anchor)
+		logger.Success(fmt.Sprintf("Anchor %+v done!", anchor))
 
 		network := entity.NewNetworkParams()
 		// we can specify the network we verify against or leave the default
@@ -50,7 +52,7 @@ func main() {
 		// we then verify the records and we will recive a timestamp
 		// greater than 0 if the verification was successful
 		timestamp, _ := sdk.VerifyRecords(records, network)
-		color.Green("[✓] Timestamp: %d", timestamp)
+		logger.Success(fmt.Sprintf("Timestamp: %d", timestamp))
 		return nil
 	})
 
@@ -77,12 +79,12 @@ func main() {
 		}
 
 		// Once we sent a record, we can wait for it's anochor
-		color.Yellow("[+] Waiting for anchor...")
+		logger.Info("Waiting for anchor...")
 		anchor, err := sdk.WaitAnchor(receipt[0].Anchor, entity.NewAnchorParams())
 		if err != nil {
 			return err
 		}
-		color.Green("[✓] Anchor %d done!", anchor)
+		logger.Success(fmt.Sprintf("Anchor %+v done!", anchor))
 
 		// first we get the proof
 		proof, err := sdk.GetProof(records)
@@ -106,7 +108,7 @@ func main() {
 		}
 
 		// We will recive a timestamp greater than 0 if the validation was successful
-		color.Green("[✓] Timestamp: %d", timestamp)
+		logger.Success(fmt.Sprintf("Timestamp: %d", timestamp))
 		return nil
 	})
 }
