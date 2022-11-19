@@ -5,3 +5,6 @@ go/vendor
 python/**/*.egg-info
 python/build
 python/dist
+
+java/build
+java/target
