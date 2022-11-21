@@ -1,3 +1,5 @@
+package com.bloock.quickstart.utils;
+
 public class Logger {
 
     public static final String ANSI_RESET = "\u001B[0m";

@@ -1,15 +1,15 @@
-import com.bloock.sdk.Bloock;
+package com.bloock.quickstart.samples.builder;
+
+import com.bloock.quickstart.utils.Config;
+import com.bloock.quickstart.utils.Logger;
+import com.bloock.quickstart.utils.Sample;
 import com.bloock.sdk.builder.Builder;
-import com.bloock.sdk.client.Client;
 import com.bloock.sdk.entity.Record;
 
 public class FromBytes extends Sample 
 {
     public void run(Config config) throws Exception
     {
-        Bloock.apiKey = "";
-        Client client = new Client();
-
         Builder builder = Builder.fromString("hello world");
         Logger.info("builder" + ((builder != null) ? "true" : "false"));
         Record record = builder.build();

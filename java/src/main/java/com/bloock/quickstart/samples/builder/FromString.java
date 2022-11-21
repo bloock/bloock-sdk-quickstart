@@ -1,4 +1,7 @@
-import com.bloock.sdk.Bloock;
+package com.bloock.quickstart.samples.builder;
+
+import com.bloock.quickstart.utils.Config;
+import com.bloock.quickstart.utils.Sample;
 
 public class FromString extends Sample 
 {
