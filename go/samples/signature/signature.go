@@ -54,9 +54,9 @@ func main() {
 			return err
 		}
 
-        if hash != "ed6c11b0b5b808960df26f5bfc471d04c1995b0ffd2055925ad1be28d6baadfd" {
+		if hash != "ed6c11b0b5b808960df26f5bfc471d04c1995b0ffd2055925ad1be28d6baadfd" {
 			return errors.New("Unexpected hash received")
-        }
+		}
 
 		logger.Success("Hash: " + hash)
 

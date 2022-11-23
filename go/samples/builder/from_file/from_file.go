@@ -21,7 +21,7 @@ func main() {
 			return err
 		}
 
-        logger.Success("Record was created successfully")
+		logger.Success("Record was created successfully")
 
 		hash, err := record.GetHash()
 		if err != nil {
@@ -32,7 +32,7 @@ func main() {
 			return errors.New("Unexpected hash received")
 		}
 
-        logger.Success("Hash: " + hash)
+		logger.Success("Hash: " + hash)
 
 		// we can get the file back if needed
 		err = ioutil.WriteFile("../resources/output.pdf", record.Retrieve(), 0644)
