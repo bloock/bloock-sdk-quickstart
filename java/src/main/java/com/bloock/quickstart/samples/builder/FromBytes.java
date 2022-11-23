@@ -10,13 +10,10 @@ public class FromBytes extends Sample
 {
     public void run(Config config) throws Exception
     {
-        Builder builder = Builder.fromString("hello world");
-        Logger.info("builder" + ((builder != null) ? "true" : "false"));
-        Record record = builder.build();
-        Logger.info("record");
+        Record record = Builder.fromString("Hello world").build();
         String hash = record.getHash();
         Logger.info(hash);
-        throw new Exception("FromBytes error");
+        assert hash == "ed6c11b0b5b808960df26f5bfc471d04c1995b0ffd2055925ad1be28d6baadfd";
     }
 
     FromBytes(String name) {
