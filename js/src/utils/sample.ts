@@ -1,18 +1,20 @@
-import { Config } from './config'
-import { Logger } from './logger'
+import { Config } from "./config";
+import { Logger } from "./logger";
 
 export class Sample {
-    public static run(name: string, fn: (config: Config) => Promise<any>) {
-        let config: Config = {
-            apiKey: process.env["API_KEY"],
-        }
+  public static run(name: string, fn: (config: Config) => Promise<any>) {
+    let config: Config = {
+      apiKey: process.env["API_KEY"]
+    };
 
-        Logger.info(`${name}: Started`)
-        fn(config).then(() => {
-            Logger.success(`${name}: Successful`)
-        }).catch(err => {
-            Logger.error(`${name}: Failure`)
-            Logger.error(`${name}: ${err}`)
-        })
-    }
+    Logger.info(`${name}: Started`);
+    fn(config)
+      .then(() => {
+        Logger.success(`${name}: Successful`);
+      })
+      .catch(err => {
+        Logger.error(`${name}: Failure`);
+        Logger.error(`${name}: ${err}`);
+      });
+  }
 }
