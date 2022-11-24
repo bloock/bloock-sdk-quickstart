@@ -10,6 +10,7 @@ public abstract class Sample {
   public Sample(String name) {
     Config config = new Config();
     config.apiKey = System.getenv("API_KEY");
+    config.apiHost = System.getenv("API_HOST");
 
     Logger.info(name + ": Started");
 
