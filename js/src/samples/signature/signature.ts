@@ -15,6 +15,7 @@ Sample.run("signature", async (config: Config) => {
 
   Logger.success("Record was signed successfully");
 
+  // we can add another signature with a different key
   keys = await client.generateKeys();
 
   Logger.info("Adding another signature");
