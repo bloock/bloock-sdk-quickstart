@@ -23,7 +23,7 @@ def verification(c: Config):
     Logger.success(f"Anchor {anchor.__dict__} done!")
 
     # we can optionally specify a network (if not set, default is Ethereum Mainnet)
-    timestamp = client.verify_records(records, Network.ETHEREUM_MAINNET)
+    timestamp = client.verify_records(records, Network.BLOOCK_CHAIN)
     Logger.success(f"Timestamp: {timestamp}")
 
 
@@ -50,7 +50,7 @@ def verification_long(c: Config):
 
     # And finally validate the root. We can optionally specify a network
     # (if not set, default is Ethereum Mainnet)
-    timestamp = client.validate_root(root, Network.ETHEREUM_MAINNET)
+    timestamp = client.validate_root(root, Network.BLOOCK_CHAIN)
 
     # We will recive a timestamp greater than 0 if the validation was successful
     Logger.success(f"Timestamp: {timestamp}")

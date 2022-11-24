@@ -30,7 +30,7 @@ Sample.run("Verification long", async (config: Config) => {
 
   // And finally validate the root
   // we can optionally specify a network (if not set, default is Ethereum Mainnet)
-  let timestamp = await client.validateRoot(root, Network.ETHEREUM_MAINNET);
+  let timestamp = await client.validateRoot(root, Network.BLOOCK_CHAIN);
 
   // We will recive a timestamp greater than 0 if the validation was successful
   Logger.success(`Timestamp: ${timestamp}`);

@@ -22,6 +22,6 @@ Sample.run("Verification", async (config: Config) => {
   Logger.success(`Anchor ${JSON.stringify(anchor)} done!`);
 
   // we can optionally specify a network (if not set, default is Ethereum Mainnet)
-  let timestamp = await client.verifyRecords(records, Network.ETHEREUM_MAINNET);
+  let timestamp = await client.verifyRecords(records, Network.BLOOCK_CHAIN);
   Logger.success(`Timestamp: ${timestamp}`);
 });
