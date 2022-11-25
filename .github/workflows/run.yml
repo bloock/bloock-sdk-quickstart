@@ -1,0 +1,58 @@
+name: Run Quickstarts
+on:
+  push:
+    branches:
+      - master
+  repository_dispatch:
+    types: [run_quickstarts]
+
+jobs:
+  version:
+    name: Update version number
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name }} == 'repository_dispatch'
+    steps:
+      - uses: actions/checkout@v3
+      - name: Update version
+        run: echo ${{ github.event.client_payload.version }} > ./VERSION
+      - name: Update versions
+        run: make update_version
+      - name: commit and tag
+        uses: EndBug/add-and-commit@v5
+        with:
+          author_name: "bloock"
+          message: "Updated Bloock SDK to v${{ github.event.client_payload.version }}"
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  run_go:
+    name: Run Golang quickstarts
+    runs-on: ubuntu-latest
+    needs: [version]
+    steps:
+      - name: Run Golang
+        run: make run
+        working-directory: go
+  run_java:
+    name: Run Java quickstarts
+    runs-on: ubuntu-latest
+    needs: [version]
+    steps:
+      - name: Run Java
+        run: make run
+        working-directory: java
+  run_js:
+    name: Run JS quickstarts
+    runs-on: ubuntu-latest
+    needs: [version]
+    steps:
+      - name: Run JS
+        run: make run
+        working-directory: js
+  run_python:
+    name: Run Python quickstarts
+    runs-on: ubuntu-latest
+    needs: [version]
+    steps:
+      - name: Run Python
+        run: make run
+        working-directory: python
