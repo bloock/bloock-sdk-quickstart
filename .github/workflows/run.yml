@@ -43,6 +43,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/install_rush
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
       - name: Run Java
         run: make run
         working-directory: java
@@ -65,6 +69,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/install_rush
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11' 
       - name: Run Python
         run: |
           pip3 install -r requirements.txt
