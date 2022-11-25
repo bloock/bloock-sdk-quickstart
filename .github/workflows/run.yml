@@ -10,14 +10,16 @@ jobs:
   version:
     name: Update version number
     runs-on: ubuntu-latest
-    if: ${{ github.event.client_payload.version }}
     steps:
       - uses: actions/checkout@v3
       - name: Update version
+        if: ${{ github.event.client_payload.version }}
         run: echo ${{ github.event.client_payload.version }} > ./VERSION
       - name: Update versions
+        if: ${{ github.event.client_payload.version }}
         run: make update_version
       - name: commit and tag
+        if: ${{ github.event.client_payload.version }}
         uses: EndBug/add-and-commit@v5
         with:
           author_name: "BLOOCK"
