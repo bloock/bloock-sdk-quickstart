@@ -1,18 +1,21 @@
-import { Config } from './config'
-import * as colors from 'colors'
+import { Config } from "./config";
+import { Logger } from "./logger";
 
 export class Sample {
-    public static run(name: string, fn: (config: Config) => Promise<any>) {
-        let config: Config = {
-            apiKey: ""
-        }
+  public static run(name: string, fn: (config: Config) => Promise<any>) {
+    let config: Config = {
+      apiKey: process.env["API_KEY"],
+      apiHost: process.env["API_HOST"]
+    };
 
-        console.log(colors.yellow(`[+] ${name}: Started`))
-        fn(config).then(() => {
-            console.log(colors.green(`[✓] ${name}: Successful`))
-        }).catch(err => {
-            console.log(colors.red(`[!] ${name}: Failure`))
-            console.log(colors.red(`[!] ${name}: ${err}`))
-        })
-    }
+    Logger.info(`${name}: Started`);
+    fn(config)
+      .then(() => {
+        Logger.success(`${name}: Successful`);
+      })
+      .catch(err => {
+        Logger.error(`${name}: Failure`);
+        Logger.error(`${name}: ${err}`);
+      });
+  }
 }

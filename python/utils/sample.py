@@ -1,15 +1,17 @@
+import os
 from utils.config import Config
-from colorama import Fore, Style
+
+from utils.logger import Logger
+
 
 def Sample(name, fn):
-    config = Config("")
+    config = Config(api_key=os.getenv("API_KEY"))
 
-    print(Fore.YELLOW + f'[+] {name}: Started' + Style.RESET_ALL)
+    Logger.info(f"{name}: Started")
     try:
         fn(config)
     except Exception as e:
-        print(Fore.RED + f'[x] {name}: Failure' + Style.RESET_ALL)
-        print(Fore.RED + f'[x] {name}: {e}' + Style.RESET_ALL)
+        Logger.err("{name}: Failure")
+        Logger.err(f"{name}: {e}")
     else:
-        print(Fore.GREEN + f'[✓] {name}: Successful' + Style.RESET_ALL)
-
+        Logger.success(f"{name}: Successful")

@@ -4,17 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "fmt": "tsdx lint --fix"
   },
   "author": "marcbaque",
   "license": "ISC",
   "dependencies": {
-    "@bloock/sdk": "^2.0.0-beta.17",
+    "@bloock/sdk": "^2.0.0",
     "@swc/core": "^1.3.14",
     "colors": "^1.4.0",
     "glob": "^8.0.3",
     "jest-haste-map": "^29.2.1",
     "ts-node": "^10.9.1",
+    "tsdx": "^0.14.1",
     "typescript": "^4.8.4"
   },
   "devDependencies": {

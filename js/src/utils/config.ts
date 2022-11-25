@@ -1,3 +1,4 @@
 export type Config = {
-    apiKey: string
-}
+  apiKey: string;
+  apiHost: string;
+};
