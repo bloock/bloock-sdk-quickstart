@@ -5,7 +5,7 @@ runs:
   steps:
     - name: Install rush
       run: |
-        curl -s https://github.com/shenwei356/rush/releases/download/v0.5.0/rush_linux_amd64.tar.gz --output rush.tar.gz
+        curl -L -s https://github.com/shenwei356/rush/releases/download/v0.5.0/rush_linux_amd64.tar.gz --output rush.tar.gz
         tar -zxvf rush.tar.gz
         cp rush /usr/local/bin/
       shell: bash
