@@ -32,6 +32,7 @@ jobs:
     needs: [version]
     steps:
       - uses: actions/checkout@v3
+      - uses: ./.github/actions/install_rush
       - name: Run Golang
         run: make run
         working-directory: go
@@ -41,6 +42,7 @@ jobs:
     needs: [version]
     steps:
       - uses: actions/checkout@v3
+      - uses: ./.github/actions/install_rush
       - name: Run Java
         run: make run
         working-directory: java
@@ -50,6 +52,7 @@ jobs:
     needs: [version]
     steps:
       - uses: actions/checkout@v3
+      - uses: ./.github/actions/install_rush
       - name: Run JS
         run: make run
         working-directory: js
@@ -59,6 +62,7 @@ jobs:
     needs: [version]
     steps:
       - uses: actions/checkout@v3
+      - uses: ./.github/actions/install_rush
       - name: Run Python
         run: make run
         working-directory: python
