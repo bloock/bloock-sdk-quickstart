@@ -1,4 +1,5 @@
 import os
+import sys
 from utils.config import Config
 
 from utils.logger import Logger
@@ -13,5 +14,6 @@ def Sample(name, fn):
     except Exception as e:
         Logger.err("{name}: Failure")
         Logger.err(f"{name}: {e}")
+        sys.exit(1)
     else:
         Logger.success(f"{name}: Successful")

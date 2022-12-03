@@ -17,6 +17,7 @@ func Sample(name string, fn func(Config) error) {
 	if err != nil {
 		logger.Error(name + ": Failure")
 		logger.Error(name + ": " + err.Error())
+		os.Exit(1)
 	} else {
 		logger.Success(name + ": Successful")
 	}

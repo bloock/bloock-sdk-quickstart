@@ -17,11 +17,11 @@ public abstract class Sample {
     try {
       this.run(config);
       Logger.success(name + ": Successful");
-
     } catch (Exception e) {
       Logger.error(name + ": Failure");
       e.printStackTrace();
       Logger.error(name + ": " + e);
+      System.exit(1);
     }
   }
 
