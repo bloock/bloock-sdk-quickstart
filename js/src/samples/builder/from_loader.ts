@@ -1,4 +1,9 @@
-import { Bloock, HostedLoader, HostedPublisher, RecordBuilder } from "@bloock/sdk";
+import {
+  Bloock,
+  HostedLoader,
+  HostedPublisher,
+  RecordBuilder
+} from "@bloock/sdk";
 import { Config } from "../../utils/config";
 import { Logger } from "../../utils/logger";
 import { Sample } from "../../utils/sample";

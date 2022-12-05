@@ -26,7 +26,7 @@ func main() {
 			return errors.New("Unexpected hash received")
 		}
 
-        bloock.ApiKey = c.ApiKey
+		bloock.ApiKey = c.ApiKey
 
 		result, err := record.Publish(entity.NewHostedPublisher())
 		if err != nil {

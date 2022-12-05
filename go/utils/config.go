@@ -1,6 +1,6 @@
 package utils
 
 type Config struct {
-	ApiKey string
+	ApiKey  string
 	ApiHost string
 }
