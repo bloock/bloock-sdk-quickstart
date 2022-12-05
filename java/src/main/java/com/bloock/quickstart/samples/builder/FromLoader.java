@@ -3,6 +3,7 @@ package com.bloock.quickstart.samples.builder;
 import com.bloock.quickstart.utils.Config;
 import com.bloock.quickstart.utils.Logger;
 import com.bloock.quickstart.utils.Sample;
+import com.bloock.sdk.Bloock;
 import com.bloock.sdk.builder.Builder;
 import com.bloock.sdk.entity.HostedLoader;
 import com.bloock.sdk.entity.HostedPublisher;
@@ -14,6 +15,8 @@ public class FromLoader extends Sample {
     String hash = record.getHash();
 
     assert hash.equals("ed6c11b0b5b808960df26f5bfc471d04c1995b0ffd2055925ad1be28d6baadfd");
+
+    Bloock.apiKey = config.apiKey;
 
     String result = record.publish(new HostedPublisher());
 
