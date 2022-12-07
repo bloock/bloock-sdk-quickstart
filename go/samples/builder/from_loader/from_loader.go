@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 
+	"github.com/bloock/bloock-sdk-go/v2"
 	"github.com/bloock/bloock-sdk-go/v2/builder"
 	"github.com/bloock/bloock-sdk-go/v2/client/entity"
 	"github.com/bloock/bloock-sdk-quickstart/utils"
@@ -24,6 +25,8 @@ func main() {
 		if hash != "ed6c11b0b5b808960df26f5bfc471d04c1995b0ffd2055925ad1be28d6baadfd" {
 			return errors.New("Unexpected hash received")
 		}
+
+		bloock.ApiKey = c.ApiKey
 
 		result, err := record.Publish(entity.NewHostedPublisher())
 		if err != nil {

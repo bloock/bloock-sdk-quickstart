@@ -1,9 +1,14 @@
-import { HostedLoader, HostedPublisher, RecordBuilder } from "@bloock/sdk";
+import {
+  Bloock,
+  HostedLoader,
+  HostedPublisher,
+  RecordBuilder
+} from "@bloock/sdk";
 import { Config } from "../../utils/config";
 import { Logger } from "../../utils/logger";
 import { Sample } from "../../utils/sample";
 
-Sample.run("builder_from_loader", async (_: Config) => {
+Sample.run("builder_from_loader", async (conf: Config) => {
   let record = await RecordBuilder.fromString("Hello world").build();
 
   let hash = await record.getHash();
@@ -13,6 +18,7 @@ Sample.run("builder_from_loader", async (_: Config) => {
     throw new Error("Unexpected hash received");
   }
 
+  Bloock.setApiKey(conf.apiKey);
   let result = await record.publish(new HostedPublisher());
 
   if (result !== hash) {
