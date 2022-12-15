@@ -3,8 +3,8 @@ import { Config } from "../../utils/config";
 import { Sample } from "../../utils/sample";
 import { Logger } from "../../utils/logger";
 
-Sample.run("encryption", async (_: Config) => {
-  let payload = "This wil be encrypted";
+Sample.run("AES encryption", async (_: Config) => {
+  let payload = "This will be encrypted";
   let password = "a STRONG password";
 
   Logger.warn(`The following payload will be encrypted: ${payload}`);
@@ -35,7 +35,7 @@ Sample.run("encryption", async (_: Config) => {
   Logger.success(`Hash: ${hash}`);
 
   if (
-    hash !== "b6e6816e3c6180fcbda27048f033cf2b6f2a627864240c4c85558bcbece2a2e4"
+    hash !== "6ede674d860c8593708d29f4484e87da36079f0bddf712e1e2bdc5ea0904f0ff"
   ) {
     throw new Error("Unexpected hash received");
   }

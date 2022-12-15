@@ -15,7 +15,7 @@ Sample.run("Verification long", async (config: Config) => {
 
   let receipts = await client.sendRecords(records);
 
-  console.log(`==>  ${receipts}`);
+  Logger.success(`Receipts: ${JSON.stringify(receipts)}`)
   // Once we sent a record, we can wait for it's anochor
   Logger.info(`Waiting for anchor...`);
   // we can optionally specify a timeout (if not set, default is 120000)
