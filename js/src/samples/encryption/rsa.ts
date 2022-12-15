@@ -1,4 +1,9 @@
-import { BloockClient, RecordBuilder, RsaDecrypter, RsaEncrypter } from "@bloock/sdk";
+import {
+  BloockClient,
+  RecordBuilder,
+  RsaDecrypter,
+  RsaEncrypter
+} from "@bloock/sdk";
 import { Config } from "../../utils/config";
 import { Sample } from "../../utils/sample";
 import { Logger } from "../../utils/logger";
@@ -57,12 +62,8 @@ Sample.run("RSA encryption", async (_: Config) => {
     exceptionWasThrown = true;
   }
   if (!exceptionWasThrown) {
-    throw new Error(
-      "The key was invalid so an error should've been returned!"
-    );
+    throw new Error("The key was invalid so an error should've been returned!");
   }
 
-  Logger.success(
-    `The key was invalid so the record could not be decrypted`
-  );
+  Logger.success(`The key was invalid so the record could not be decrypted`);
 });

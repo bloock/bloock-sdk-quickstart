@@ -15,7 +15,7 @@ func main() {
 		payload := "This will be encrypted"
 		sdk := client.NewClient()
 
-        keypair, err := sdk.GenerateRsaKeyPair()
+		keypair, err := sdk.GenerateRsaKeyPair()
 
 		if err != nil {
 			return err

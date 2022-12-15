@@ -9,7 +9,6 @@ import com.bloock.sdk.entity.KeyPair;
 import com.bloock.sdk.entity.Record;
 import com.bloock.sdk.entity.RsaDecrypter;
 import com.bloock.sdk.entity.RsaEncrypter;
-
 import java.nio.charset.StandardCharsets;
 
 public class Rsa extends Sample {
@@ -22,7 +21,8 @@ public class Rsa extends Sample {
     Logger.info("The following payload will be encrypted: " + payload);
 
     // To encrypt we add an encrypter to the builder
-    Record record = Builder.fromString(payload).withEncrypter(new RsaEncrypter(keypair.getPublicKey())).build();
+    Record record =
+        Builder.fromString(payload).withEncrypter(new RsaEncrypter(keypair.getPublicKey())).build();
 
     Logger.success("Encryption successful");
 

@@ -15,7 +15,7 @@ func main() {
 		payload := "This will be encrypted"
 		sdk := client.NewClient()
 
-        keypair, err := sdk.GenerateEciesKeyPair()
+		keypair, err := sdk.GenerateEciesKeyPair()
 
 		if err != nil {
 			return err

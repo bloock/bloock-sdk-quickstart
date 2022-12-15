@@ -9,7 +9,6 @@ import com.bloock.sdk.entity.EciesDecrypter;
 import com.bloock.sdk.entity.EciesEncrypter;
 import com.bloock.sdk.entity.KeyPair;
 import com.bloock.sdk.entity.Record;
-
 import java.nio.charset.StandardCharsets;
 
 public class Ecies extends Sample {
@@ -22,7 +21,10 @@ public class Ecies extends Sample {
     Logger.info("The following payload will be encrypted: " + payload);
 
     // To encrypt we add an encrypter to the builder
-    Record record = Builder.fromString(payload).withEncrypter(new EciesEncrypter(keypair.getPublicKey())).build();
+    Record record =
+        Builder.fromString(payload)
+            .withEncrypter(new EciesEncrypter(keypair.getPublicKey()))
+            .build();
 
     Logger.success("Encryption successful");
 
@@ -34,7 +36,9 @@ public class Ecies extends Sample {
 
     // To decrypt we build a record from the encrypted record and add a decrypter
     Record decryptedRecord =
-        Builder.fromRecord(record).withDecrypter(new EciesDecrypter(keypair.getPrivateKey())).build();
+        Builder.fromRecord(record)
+            .withDecrypter(new EciesDecrypter(keypair.getPrivateKey()))
+            .build();
 
     Logger.success("Decryption successful");
 
