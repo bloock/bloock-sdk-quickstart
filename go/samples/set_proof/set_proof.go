@@ -25,7 +25,7 @@ func main() {
         	Anchor: entity.ProofAnchor{
         		AnchorID: 10,
         		Networks: []entity.AnchorNetwork{{
-        			Name:   "network",
+        			Name:   "Ethereum",
         			State:  "state",
         			TxHash: "b20422fcfbe5b818ee305b44d5aaf427d103f8c5791b79c772ce82c747b2cd0d",
         		}},
