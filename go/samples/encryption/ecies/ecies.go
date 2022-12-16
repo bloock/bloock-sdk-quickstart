@@ -4,21 +4,28 @@ import (
 	"errors"
 
 	"github.com/bloock/bloock-sdk-go/v2/builder"
+	"github.com/bloock/bloock-sdk-go/v2/client"
 	"github.com/bloock/bloock-sdk-go/v2/client/entity"
 	"github.com/bloock/bloock-sdk-quickstart/utils"
 	"github.com/bloock/bloock-sdk-quickstart/utils/logger"
 )
 
 func main() {
-	utils.Sample("simple encryption/decryption", func(c utils.Config) error {
+	utils.Sample("ECIES encryption/decryption", func(c utils.Config) error {
 		payload := "This will be encrypted"
-		password := "a STRONG password"
+		sdk := client.NewClient()
+
+		keypair, err := sdk.GenerateEciesKeyPair()
+
+		if err != nil {
+			return err
+		}
 
 		logger.Info("The following payload will be encrypted: " + payload)
 
 		// To encrypt we add an encrypter to the builder
 		encryptedRecord, err := builder.NewRecordBuilderFromString(payload).
-			WithEncrypter(entity.NewAesEncrypter(password)).
+			WithEncrypter(entity.NewEciesEncrypter(keypair.PublicKey)).
 			Build()
 
 		if err != nil {
@@ -29,11 +36,11 @@ func main() {
 
 		logger.Success("Encrypted payload: " + string(encryptedRecord.Retrieve()))
 
-		logger.Info("Trying to decrypt with the valid password")
+		logger.Info("Trying to decrypt with the private key")
 
 		// To decrypt we build a record from the encrypted record and add a decrypter
 		decryptedRecord, err := builder.NewRecordBuilderFromRecord(encryptedRecord).
-			WithDecrypter(entity.NewAesDecrypter(password)).
+			WithDecrypter(entity.NewEciesDecrypter(keypair.PrivateKey)).
 			Build()
 
 		if err != nil {
@@ -50,17 +57,17 @@ func main() {
 
 		logger.Success("Decrypted payload: " + string(decryptedRecord.Retrieve()))
 
-		logger.Info("Trying to decrypt with invalid password")
+		logger.Info("Trying to decrypt with invalid private key")
 
 		_, err = builder.NewRecordBuilderFromRecord(encryptedRecord).
-			WithDecrypter(entity.NewAesDecrypter("an invalid password")).
+			WithDecrypter(entity.NewEciesDecrypter("an invalid key")).
 			Build()
 
 		if err == nil {
-			return errors.New("The password was invalid so an error should've been returned!")
+			return errors.New("The key was invalid so an error should've been returned!")
 		}
 
-		logger.Success("The password was invalid so the record could not be decrypted")
+		logger.Success("The key was invalid so the record could not be decrypted")
 
 		return nil
 	})

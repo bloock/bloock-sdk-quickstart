@@ -91,6 +91,7 @@ func main() {
 		if err != nil {
 			return err
 		}
+		logger.Success(fmt.Sprintf("Proof: %+v", proof))
 
 		// then verify it
 		root, err := sdk.VerifyProof(proof)

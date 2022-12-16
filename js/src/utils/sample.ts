@@ -16,7 +16,7 @@ export class Sample {
       .catch(err => {
         Logger.error(`${name}: Failure`);
         Logger.error(`${name}: ${err}`);
-        process.exit(1)
+        process.exit(1);
       });
   }
 }
