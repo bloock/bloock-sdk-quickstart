@@ -32,7 +32,7 @@ func main() {
 			return err
 		}
 
-        logger.Success("Hash: " + hash)
+		logger.Success("Hash: " + hash)
 
 		// append the record we want to send to the array
 		records = append(records, record)
