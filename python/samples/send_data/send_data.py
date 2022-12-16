@@ -11,15 +11,14 @@ def send_data(c: Config):
     bloock.api_key = c.api_key
     client = Client()
 
-    # we create an array of strings which will contain
-    # the hashes of the records we want to send
-    records = []
     record = RecordBuilder.from_string("Hello world").build()
+
+    # we create an array of records which will contain the records we want to send
+    records = [record]
+
     # we can get the hash of the record
     hash = record.get_hash()
-
-    # and append it to the array
-    records.append(hash)
+    Logger.success("Hash: " + hash)
 
     # finally we can send the records
     send_receipts = client.send_records(records)

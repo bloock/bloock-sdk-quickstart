@@ -6,6 +6,7 @@ import (
 	"github.com/bloock/bloock-sdk-go/v2"
 	"github.com/bloock/bloock-sdk-go/v2/builder"
 	"github.com/bloock/bloock-sdk-go/v2/client"
+	"github.com/bloock/bloock-sdk-go/v2/client/entity"
 	"github.com/bloock/bloock-sdk-quickstart/utils"
 	"github.com/bloock/bloock-sdk-quickstart/utils/logger"
 )
@@ -16,9 +17,8 @@ func main() {
 		bloock.ApiKey = c.ApiKey
 		sdk := client.NewClient()
 
-		// we create an array of strings which will contain
-		// the hashes of the records we want to send
-		records := []string{}
+		// we create an array of records which will contain the records we want to send
+		records := []entity.Record{}
 
 		// first we create a record
 		record, err := builder.NewRecordBuilderFromString("Hello world").Build()
@@ -32,8 +32,10 @@ func main() {
 			return err
 		}
 
-		// and append it to the array
-		records = append(records, hash)
+        logger.Success("Hash: " + hash)
+
+		// append the record we want to send to the array
+		records = append(records, record)
 
 		// finally we can send the records
 		receipt, err := sdk.SendRecords(records)

@@ -16,19 +16,14 @@ func main() {
 		bloock.ApiKey = c.ApiKey
 		sdk := client.NewClient()
 
-		records := []string{}
+		records := []entity.Record{}
 
 		record, err := builder.NewRecordBuilderFromString("Hello world").Build()
 		if err != nil {
 			return err
 		}
 
-		hash, err := record.GetHash()
-		if err != nil {
-			return err
-		}
-
-		records = append(records, hash)
+		records = append(records, record)
 		receipt, err := sdk.SendRecords(records)
 		if err != nil {
 			return err
@@ -60,19 +55,14 @@ func main() {
 		bloock.ApiKey = c.ApiKey
 		sdk := client.NewClient()
 
-		records := []string{}
+		records := []entity.Record{}
 
 		record, err := builder.NewRecordBuilderFromString("Hello world").Build()
 		if err != nil {
 			return err
 		}
 
-		hash, err := record.GetHash()
-		if err != nil {
-			return err
-		}
-
-		records = append(records, hash)
+		records = append(records, record)
 		receipt, err := sdk.SendRecords(records)
 		if err != nil {
 			return err

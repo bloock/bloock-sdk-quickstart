@@ -17,11 +17,9 @@ public class SendData extends Sample {
     Bloock.apiKey = config.apiKey;
     Client client = new Client();
 
-    // we create an ArrayList of strings which will contain
-    // the hashes of the records we want to send
+    // we create an ArrayList of records which will contain the records we want to send
     Record record = Builder.fromString("Hello world").build();
-    String hash = record.getHash();
-    ArrayList<String> records = new ArrayList<>(Arrays.asList(hash));
+    ArrayList<Record> records = new ArrayList<>(Arrays.asList(record));
 
     // finally we can send the records
     List<RecordReceipt> receipts = client.sendRecords(records);

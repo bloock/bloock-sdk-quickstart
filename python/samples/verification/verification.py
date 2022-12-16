@@ -12,8 +12,7 @@ def verification(c: Config):
     client = Client()
 
     record = RecordBuilder.from_string("Hello world").build()
-    hash = record.get_hash()
-    records = [hash]
+    records = [record]
 
     receipts = client.send_records(records)
 
@@ -32,8 +31,7 @@ def verification_long(c: Config):
     client = Client()
 
     record = RecordBuilder.from_string("Hello world").build()
-    hash = record.get_hash()
-    records = [hash]
+    records = [record]
 
     receipts = client.send_records(records)
 

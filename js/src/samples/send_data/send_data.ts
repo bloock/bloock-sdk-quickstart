@@ -15,9 +15,10 @@ Sample.run("Send Data", async (config: Config) => {
 
   // we can get the hash of the record
   let hash = await record.getHash();
+  Logger.success("Hash: " + hash);
 
-  // and append it to the array
-  records.push(hash);
+  // append the record we want to send to the array
+  records.push(record);
 
   // finally we can send the records
   let sendReceipts = await client.sendRecords(records);

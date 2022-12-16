@@ -10,8 +10,7 @@ Sample.run("Verification", async (config: Config) => {
 
   let record = await RecordBuilder.fromString("Hello world").build();
 
-  let hash = await record.getHash();
-  let records = [hash];
+  let records = [record];
 
   let receipts = await client.sendRecords(records);
 
