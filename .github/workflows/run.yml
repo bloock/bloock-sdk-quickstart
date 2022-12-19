@@ -17,6 +17,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: "17"
+      - name: Set up JS
+        uses: actions/setup-node@v1
+        with:
+          node-version: "18"
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.11
       - name: Update version
         if: ${{ github.event.client_payload.version }}
         run: echo ${{ github.event.client_payload.version }} > ./VERSION
