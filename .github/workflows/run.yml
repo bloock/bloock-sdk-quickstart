@@ -5,11 +5,6 @@ on:
       - master
   repository_dispatch:
     types: [run_quickstarts]
-  workflow_dispatch:
-    inputs:
-      version:
-        description: "Version Number"
-        required: true
 
 jobs:
   version:
@@ -42,24 +37,10 @@ jobs:
         run: make update_version
       - name: commit and tag
         if: ${{ github.event.client_payload.version }}
-        uses: EndBug/add-and-commit@v5
+        uses: EndBug/add-and-commit@v9
         with:
           author_name: "BLOOCK"
           message: "Updated Bloock SDK to v${{ github.event.client_payload.version }}"
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      - name: Update version
-        if: ${{ github.event.inputs.version }}
-        run: echo ${{ github.event.inputs.version }} > ./VERSION
-      - name: Update versions
-        if: ${{ github.event.inputs.version }}
-        run: make update_version
-      - name: commit and tag
-        if: ${{ github.event.inputs.version }}
-        uses: EndBug/add-and-commit@v5
-        with:
-          author_name: "BLOOCK"
-          message: "Updated Bloock SDK to v${{ github.event.inputs.version }}"
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
   run_go:
