@@ -25,10 +25,13 @@ def signature(c: Config):
     # we can add another signature with a different key
     keys = client.generate_keys()
 
-    Logger.info("Adding another signature")
+    Logger.info("Adding another signature with a common name")
+
+    name = "Some name"
+
     signed_record = (
         RecordBuilder.from_record(signed_record)
-        .with_signer(EcsdaSigner(keys.private_key))
+        .with_signer(EcsdaSigner(keys.private_key, common_name=name))
         .build()
     )
 
@@ -44,6 +47,13 @@ def signature(c: Config):
 
     for i, signature in enumerate(signatures):
         Logger.success(f"Signature {i + 1}: {signature.signature}")
+
+    retrieved_name = signatures[1].get_common_name()
+
+    if retrieved_name != name:
+        raise Exception("The retrieved name is not the expected name")
+
+    Logger.success(f"Common name for signature is {retrieved_name}")
 
 
 Sample("signature", signature)

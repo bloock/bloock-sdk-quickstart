@@ -23,7 +23,9 @@ func main() {
 		}
 
 		signedRecord, err := builder.NewRecordBuilderFromString("Hello world").
-			WithSigner(entity.NewEcsdaSigner(keys.PrivateKey)).
+			WithSigner(entity.NewEcsdaSigner(entity.SignerArgs{
+				PrivateKey: keys.PrivateKey,
+			})).
 			Build()
 
 		if err != nil {
@@ -38,9 +40,15 @@ func main() {
 			return err
 		}
 
-		logger.Info("Adding another signature")
+		logger.Info("Adding another signature with a common name")
+
+		name := "Some Name"
+
 		signedRecord, err = builder.NewRecordBuilderFromRecord(signedRecord).
-			WithSigner(entity.NewEcsdaSigner(keys.PrivateKey)).
+			WithSigner(entity.NewEcsdaSigner(entity.SignerArgs{
+				PrivateKey: keys.PrivateKey,
+				CommonName: &name,
+			})).
 			Build()
 
 		if err != nil {
@@ -68,6 +76,18 @@ func main() {
 		for i, signature := range signatures {
 			logger.Success(fmt.Sprintf("Signature %d: %+v", i+1, signature.Signature))
 		}
+
+        retrievedName, err := signatures[1].GetCommonName()
+
+        if err != nil {
+            return err
+        }
+
+        if retrievedName != name {
+            return errors.New("The retrieved name is not the expected name")
+        }
+
+        logger.Success("Common name for signature is " + retrievedName)
 
 		return nil
 	})

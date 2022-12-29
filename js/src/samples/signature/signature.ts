@@ -18,9 +18,12 @@ Sample.run("signature", async (config: Config) => {
   // we can add another signature with a different key
   keys = await client.generateKeys();
 
-  Logger.info("Adding another signature");
+  Logger.info("Adding another signature with a common name");
+
+  let name = "Some name";
+
   signedRecord = await RecordBuilder.fromRecord(signedRecord)
-    .withSigner(new EcsdaSigner(keys.privateKey))
+    .withSigner(new EcsdaSigner(keys.privateKey, { commonName: name }))
     .build();
 
   Logger.success("Record was signed successfully");
@@ -32,4 +35,12 @@ Sample.run("signature", async (config: Config) => {
   signatures.forEach((signature, i) => {
     Logger.success(`Signature ${i + 1}: ${signature.signature}`);
   });
+
+  let retrievedName = await signatures[1].getCommonName();
+
+  if (retrievedName != name) {
+    throw new Error("The retrieved name is not the expected name")
+  }
+
+  Logger.success("Common name for signature is " + retrievedName)
 });
