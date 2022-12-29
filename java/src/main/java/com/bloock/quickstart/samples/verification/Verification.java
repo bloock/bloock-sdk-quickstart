@@ -21,8 +21,7 @@ public class Verification extends Sample {
 
     Record record = Builder.fromString("Hello world").build();
 
-    String hash = record.getHash();
-    ArrayList<String> records = new ArrayList<>(Arrays.asList(hash));
+    ArrayList<Record> records = new ArrayList<>(Arrays.asList(record));
 
     List<RecordReceipt> receipts = client.sendRecords(records);
 
